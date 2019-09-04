@@ -1,16 +1,15 @@
 package com.house365.kafkaproducter.engine;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@Slf4j
 public class Producer {
 
-    private static final Logger logger = LoggerFactory.getLogger(Producer.class);
 
     public static final String TOPIC = "users";
 
@@ -19,8 +18,8 @@ public class Producer {
 
 
     public void sendMessage(String message) {
-        logger.info(String.format("### -> Producing message ->%s", message));
-        kafkaTemplate.send(TOPIC, message);
+        log.info(String.format("### -> Producing message ->%s", message));
+        this.kafkaTemplate.send(TOPIC, message);
 
     }
 }
